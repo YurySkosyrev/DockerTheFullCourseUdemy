@@ -42,3 +42,5 @@
 ***docker exec -it container_id/container_name bash*** - запуск процесса внутри запущенного контейнера
 
 ***docker run -p 8080:80 nginx - публикация порта. Docker перебросит внешний порт 8080 на внутренний порт 80 в контейнер
+
+***docker run -v ${PWD}:/usr/share/nginx/html nginx - публикация тома. PWD - переменная, путь к локальной папке
