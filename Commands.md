@@ -58,3 +58,12 @@
 ***docker build . -f*** - если имя Dockerfile отличается от "Dockerfile"
 
 ***docker build . -t my_colendar:1.0.0*** - добавляение названия и тэга
+
+## Docker-compose ##
+
+***docker-compose up*** - создается сеть, образы (если не созданы) и разворачивются контейнеры внутри этой сети, 
+согласно yaml-файла
+
+***docker-compose down*** - остановить и удалить все контейнеры
+
+***docker volume ls*** - показать тома, подключенные на Docker Host
