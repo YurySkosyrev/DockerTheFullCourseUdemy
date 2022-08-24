@@ -137,20 +137,36 @@ CMD ["python", "main.py"]
 version: '3'
 
 services:
-  frontend:
-    build: ./frontend
-    ports:
-      -'3333:3000'
-  api:
-    build: ./api
-    ports:
-      -'5555:5000'
-  mysql:
-    image: mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: time_db
-  adminer
-    image: adminer
-    ports:
-      -'8888:8000'
+
+  - frontend:
+    - build: ./frontend
+    - ports:
+      - -'3333:3000'
+  - api:
+    - build: ./api
+    - ports:
+      - -'5555:5000'
+  - mysql:
+    - image: mysql
+    - environment:
+    - MYSQL_ROOT_PASSWORD: password
+    - MYSQL_DATABASE: time_db
+  - adminer:
+    - image: adminer
+    - ports:
+      - -'8888:8000'
+
+Подключение тома внутри Docker Host:
+
+version: '3'
+
+services:
+
+  - mysql:
+    - image: mysql
+    - volumes: 
+      --mysql_data:/var/lib/mysql
+
+volumes:
+
+  - mysql_data:
