@@ -2,28 +2,22 @@ version: '3'
 
 services:
   frontend:
-    build: ./frontend
+    image: aviaurez/time-app-frontend
     restart: always
     stdin_open: true
     tty: true
     ports:
       - '3000:3000'
-    volumes:
-      - /app/node_modules
-      - ./frontend:/app
     environment:
       - HOST=0.0.0.0
       - CHOKIDAR_USEPOLLING=true
   api:
-    build: ./api
+    image: aviaurez/time-app-api-dev
     restart: always
     ports:
       - '5555:5000'
     depends_on:
       - mysql
-    volumes:
-      - /app/node_modules
-      - ./api:/app
     environment:
       MYSQL_HOST : mysql
       MYSQL_USER : root
@@ -37,7 +31,7 @@ services:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: time_db
     volumes:
-      - mysql_data:/var/lib/mysql
+      - mysql_data_pub:/var/lib/mysql
   adminer:
     image: adminer
     restart: always
@@ -45,4 +39,4 @@ services:
       - '8021:8000'
 
 volumes:
-  mysql_data:
+  mysql_data_pub:
